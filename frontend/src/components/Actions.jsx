@@ -41,6 +41,7 @@ const Actions = ({ post }) => {
     if (isLiking) return;
     setIsLiking(true);
     try {
+      setLiked(!liked);
       const res = await fetch("/api/posts/like/" + post._id, {
         method: "PUT",
         headers: {
@@ -69,8 +70,6 @@ const Actions = ({ post }) => {
         });
         setPosts(updatedPosts);
       }
-
-      setLiked(!liked);
     } catch (error) {
       showToast("Error", error.message, "error");
     } finally {
